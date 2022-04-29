@@ -1,0 +1,17 @@
+{
+  "name": "nothotdog",
+  "version": "1.0.0",
+  "description": "Simple client-server application for sharing photos.",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start-client": "cd ./frontend && npm run start",
+    "start-server": "cd ./backend && python manage.py runserver",
+    "start": "concurrently \"npm:start-*\""
+  },
+  "keywords": [],
+  "author": "Oleksii Shevtsov",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^7.1.0"
+  }
+}
