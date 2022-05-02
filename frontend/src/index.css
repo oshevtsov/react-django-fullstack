@@ -35,3 +35,18 @@ a {
   font-weight: bold;
   color: var(--color-white);
 }
+
+button {
+  outline: none;
+  border: none;
+  background-color: var(--color-secondary);
+  color: var(--color-white);
+  font-size: inherit;
+  padding: 0.5em 1em;
+  font-weight: bold;
+  border-radius: 3px;
+}
+
+button:hover {
+  cursor: pointer;
+}

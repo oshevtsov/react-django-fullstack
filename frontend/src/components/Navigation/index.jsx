@@ -29,7 +29,7 @@ const Navigation = () => {
             </NavLink>
           </li>
           <li>
-            <NavLink className={setLinkStyle} to="/auth">
+            <NavLink className={setLinkStyle} to="/login">
               Log in
             </NavLink>
           </li>

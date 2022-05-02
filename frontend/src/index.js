@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout";
 import HomeView from "./views/HomeView";
 import PhotosView from "./views/PhotosView";
+import LoginView from "./views/LoginView";
 import reportWebVitals from "./reportWebVitals";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -17,6 +18,7 @@ root.render(
         <Routes>
           <Route path="/" element={<HomeView />} />
           <Route path="/photos" element={<PhotosView />} />
+          <Route path="/login" element={<LoginView />} />
         </Routes>
       </Layout>
     </Router>
