@@ -1,0 +1,19 @@
+.navbar {
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--color-primary);
+}
+
+.navbar__menu {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+}
+
+.navbar__menu a:hover,
+a:active,
+a.active {
+  color: var(--color-secondary);
+}

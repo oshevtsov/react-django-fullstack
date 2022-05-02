@@ -1,0 +1,15 @@
+.button {
+  font-weight: bold;
+  background-color: var(--color-secondary);
+  font-size: var(--base_size);
+  padding: calc(0.75 * var(--base_size)) calc(1.5 * var(--base_size));
+  border-radius: 3px;
+}
+
+.button-normal {
+  --base_size: 1rem;
+}
+
+.button-large {
+  --base_size: 1.2rem;
+}
