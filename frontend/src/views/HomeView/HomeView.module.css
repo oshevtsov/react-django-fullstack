@@ -7,4 +7,12 @@
   justify-content: center;
   background-color: var(--color-white);
   gap: 1rem;
+  padding: 3rem;
+}
+
+@media only screen and (max-width: 30em) {
+  .HomeView {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
 }

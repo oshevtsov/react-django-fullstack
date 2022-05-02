@@ -1,10 +1,12 @@
-// import styles from "./ProfileView.module.css";
+import styles from "./UploadView.module.css";
 import RequireAuth from "../../containers/Auth";
 
 const UploadView = () => {
   return (
     <RequireAuth>
-      <h1>Upload</h1>
+      <div className={styles.UploadView}>
+        <h1>Upload</h1>
+      </div>
     </RequireAuth>
   );
 };
