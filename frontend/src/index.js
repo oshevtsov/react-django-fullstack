@@ -7,6 +7,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout";
 import HomeView from "./views/HomeView";
 import PhotosView from "./views/PhotosView";
+import ProfileView from "./views/ProfileView";
+import UploadView from "./views/UploadView";
 import LoginView from "./views/LoginView";
 import reportWebVitals from "./reportWebVitals";
 
@@ -18,6 +20,8 @@ root.render(
         <Routes>
           <Route path="/" element={<HomeView />} />
           <Route path="/photos" element={<PhotosView />} />
+          <Route path="/profile" element={<ProfileView />} />
+          <Route path="/upload" element={<UploadView />} />
           <Route path="/login" element={<LoginView />} />
         </Routes>
       </Layout>
