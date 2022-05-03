@@ -1,8 +1,15 @@
+import { Navigate } from "react-router-dom";
+import useStore from "../../store";
 import styles from "./LoginView.module.css";
 
 const LoginView = () => {
+  const currentUser = useStore((state) => state.currentUser);
+  if (currentUser) {
+    return <Navigate to="/" replace />;
+  }
+
   return (
-    <div className={styles.LoginView}>
+    <main className={styles.LoginView}>
       <h1>Login</h1>
       <form className={styles.LoginView__form}>
         <label>
@@ -15,7 +22,7 @@ const LoginView = () => {
         </label>
         <button type="submit">Submit</button>
       </form>
-    </div>
+    </main>
   );
 };
 

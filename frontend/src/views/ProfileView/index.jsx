@@ -1,10 +1,12 @@
-// import styles from "./ProfileView.module.css";
+import styles from "./ProfileView.module.css";
 import RequireAuth from "../../containers/Auth";
 
 const ProfileView = () => {
   return (
     <RequireAuth>
-      <h1>Profile</h1>
+      <main className={styles.ProfileView}>
+        <h1>Profile</h1>
+      </main>
     </RequireAuth>
   );
 };

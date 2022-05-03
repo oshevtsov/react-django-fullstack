@@ -4,9 +4,9 @@ import RequireAuth from "../../containers/Auth";
 const UploadView = () => {
   return (
     <RequireAuth>
-      <div className={styles.UploadView}>
+      <main className={styles.UploadView}>
         <h1>Upload</h1>
-      </div>
+      </main>
     </RequireAuth>
   );
 };
