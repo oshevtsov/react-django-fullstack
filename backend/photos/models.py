@@ -1,9 +1,16 @@
 from django.conf import settings
+from django.core.files.storage import default_storage
 from django.db import models
 
 
+def get_unique_filename(filename: str):
+    name, dot, ext = filename.rpartition(".")
+    return default_storage.get_alternative_name(name, f"{dot}{ext}")
+
+
 def get_owner_upload_path(photo, filename):
-    return f"uploads/{photo.owner.username}/{filename}"
+    upload_name = get_unique_filename(filename)
+    return f"{photo.owner.username}/{upload_name}"
 
 
 class Photo(models.Model):
