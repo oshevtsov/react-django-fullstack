@@ -15,6 +15,9 @@ class PhotoViewSet(viewsets.ModelViewSet):
     serializer_class = PhotoSerializer
     permission_classes = [PhotoPermission]
 
+    def perform_create(self, serializer):
+        return serializer.save(owner=self.request.user)
+
     @decorators.action(detail=True,
                        methods=["PUT"],
                        serializer_class=PhotoSourceSerializer,
@@ -26,7 +29,6 @@ class PhotoViewSet(viewsets.ModelViewSet):
                                            partial=True)
         if serializer.is_valid():
             serializer.save()
-            # TODO: Should it be validated_data or data?
             return response.Response(serializer.data)
         return response.Response(serializer.errors,
                                  status.HTTP_400_BAD_REQUEST)
