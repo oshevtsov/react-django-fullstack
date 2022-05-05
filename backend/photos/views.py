@@ -5,13 +5,15 @@ from rest_framework import status
 from rest_framework import viewsets
 
 from .models import Photo
+from .permissions import PhotoPermission
 from .serializers import PhotoSerializer
 from .serializers import PhotoSourceSerializer
 
 
 class PhotoViewSet(viewsets.ModelViewSet):
-    serializer_class = PhotoSerializer
     queryset = Photo.objects.all()
+    serializer_class = PhotoSerializer
+    permission_classes = [PhotoPermission]
 
     @decorators.action(detail=True,
                        methods=["PUT"],
