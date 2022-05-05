@@ -4,10 +4,11 @@ from .models import Photo
 
 
 class PhotoSerializer(serializers.ModelSerializer):
+    owner = serializers.ReadOnlyField(source="owner.username")
 
     class Meta:
         model = Photo
-        fields = ["owner", "title", "description", "source"]
+        fields = ["id", "owner", "title", "description", "source"]
         read_only_fields = ["source"]
 
 
