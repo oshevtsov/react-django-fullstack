@@ -3,5 +3,8 @@ django
 djangorestframework
 django-cors-headers
 
+# Dependency of ImageField in DRF
+Pillow
+
 # Testing
 pytest
