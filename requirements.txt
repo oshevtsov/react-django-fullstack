@@ -1,6 +1,7 @@
 # Web framework
 django
 djangorestframework
+djangorestframework-simplejwt
 django-cors-headers
 
 # Dependency of ImageField in DRF
