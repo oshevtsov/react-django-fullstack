@@ -1,6 +1,7 @@
 import { useEffect, useState, useCallback } from "react";
 import { API_PHOTO_LIST_VIEW_URL } from "../../settings";
 import { PrevButton, NextButton } from "../../components/Button";
+import PhotoGallery from "../../components/PhotoGallery";
 import styles from "./Photos.module.css";
 
 const Photo = ({ source, title }) => (
@@ -30,20 +31,18 @@ const Photos = () => {
   useEffect(() => {
     fetchData().catch(console.error);
   }, [fetchData]);
+
+  const controlsLegend = `${page} of ${pageData ? Math.ceil(pageData.count / 20) : page
+    }`;
   return (
     <main className={styles.photos}>
       <h1>Photos</h1>
-      <div className={styles.container}>
-        {pageData &&
-          pageData?.results.map(({ id, source, title }) => (
-            <Photo key={id} source={source} title={title} />
-          ))}
-      </div>
-      <div>
-        <PrevButton handleClick={() => setPage(page - 1)} />
-        {page} of {pageData ? Math.ceil(pageData.count / 20) : page}
-        <NextButton handleClick={() => setPage(page + 1)} />
-      </div>
+      <PhotoGallery
+        images={pageData?.results}
+        handleClickPrev={() => setPage(page - 1)}
+        handleClickNext={() => setPage(page + 1)}
+        controlsLegend={controlsLegend}
+      />
     </main>
   );
 };
