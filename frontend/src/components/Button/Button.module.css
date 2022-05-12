@@ -1,15 +1,29 @@
-.button {
+.link-button,
+.submit-button,
+.arrow-button {
+  --size: var(--base-size, 1rem);
+  padding: calc(0.5 * var(--size)) calc(var(--size));
+  font-size: var(--size);
   font-weight: bold;
-  background-color: var(--color-secondary);
-  font-size: var(--base_size);
-  padding: calc(0.5 * var(--base_size)) calc(var(--base_size));
   border-radius: 3px;
 }
 
-.button-normal {
-  --base_size: 1rem;
+.link-button,
+.submit-button {
+  background-color: var(--color-secondary);
+  color: var(--color-white);
 }
 
-.button-large {
-  --base_size: 1.25rem;
+.link-button {
+  --base-size: 1.25rem;
+}
+
+.arrow-button {
+  background-color: var(--color-black);
+  color: var(--color-white);
+}
+
+.arrow-button:hover,
+.arrow-button:focus {
+  color: var(--color-secondary);
 }

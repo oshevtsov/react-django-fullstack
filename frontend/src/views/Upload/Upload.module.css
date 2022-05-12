@@ -1,4 +1,4 @@
-.LoginView {
+.upload {
   margin: 3rem;
   padding: 4rem;
   align-self: center;
@@ -12,36 +12,44 @@
   box-shadow: 0px 0.5rem 1rem rgba(0, 0, 0, 0.15);
 }
 
-.LoginView__form {
+.form {
   font-size: 1.25rem;
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
 }
 
-.LoginView__form > * {
+.form > * {
   flex-grow: 1;
 }
 
-.LoginView__form input {
+.title,
+.file,
+.description {
   display: block;
-  font-size: inherit;
-  padding: 0.75rem 1.5rem;
   width: 100%;
-  border: 2px solid var(--color-grey-light);
-  border-radius: 3px;
+  font-size: inherit;
+  font-family: inherit;
   margin-top: 0.75rem;
 }
 
-.LoginView__form button {
+.title,
+.description {
+  border: 2px solid var(--color-grey-light);
+  border-radius: 3px;
+  padding: 0.75rem 1.5rem;
+}
+
+.form button {
   align-self: flex-end;
 }
 
 @media only screen and (max-width: 30em) {
-  .LoginView__form {
+  .form {
     font-size: 1rem;
   }
-  .LoginView {
+
+  .upload {
     margin-left: 1rem;
     margin-right: 1rem;
     padding: 2rem;

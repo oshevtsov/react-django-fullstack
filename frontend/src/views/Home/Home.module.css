@@ -1,4 +1,4 @@
-.HomeView {
+.home {
   flex-grow: 1;
   text-align: center;
   display: flex;
@@ -11,7 +11,7 @@
 }
 
 @media only screen and (max-width: 30em) {
-  .HomeView {
+  .home {
     padding-left: 1rem;
     padding-right: 1rem;
   }

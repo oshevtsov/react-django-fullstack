@@ -6,14 +6,18 @@
   background-color: var(--color-primary);
 }
 
-.navbar__menu {
+.menu {
   list-style: none;
   display: flex;
   gap: 1rem;
 }
 
-.navbar__menu a:hover,
-a:active,
+.menu a {
+  font-weight: bold;
+  color: var(--color-white);
+}
+
+.menu a:hover,
 a.active {
   color: var(--color-secondary);
 }
@@ -25,19 +29,18 @@ a.active {
     padding: 0;
   }
 
-  .navbar__brand {
+  .brand {
     padding: 1rem;
   }
 
-  .navbar__menu {
+  .menu {
     background-color: var(--color-secondary);
     padding: 0.75rem;
     width: 100%;
     justify-content: space-between;
   }
 
-  .navbar__menu a:hover,
-  a:active,
+  .menu a:hover,
   a.active {
     color: var(--color-primary);
   }
