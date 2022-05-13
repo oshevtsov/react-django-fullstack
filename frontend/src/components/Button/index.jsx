@@ -18,6 +18,7 @@ const ArrowButton = ({ handleClick, children }) => (
     type="button"
     onClick={handleClick}
     className={styles["arrow-button"]}
+    disabled={!handleClick}
   >
     {children}
   </button>

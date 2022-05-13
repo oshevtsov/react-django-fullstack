@@ -27,3 +27,9 @@
 .arrow-button:focus {
   color: var(--color-secondary);
 }
+
+button.arrow-button:disabled {
+  background-color: var(--color-grey-dark);
+  color: var(--color-grey-light);
+  cursor: not-allowed;
+}
