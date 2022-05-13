@@ -20,3 +20,6 @@ class Photo(models.Model):
     title = models.CharField(max_length=100)
     description = models.CharField(max_length=160, blank=True, null=True)
     source = models.ImageField(upload_to=get_owner_upload_path)
+
+    class Meta:
+        ordering = ["id"]
