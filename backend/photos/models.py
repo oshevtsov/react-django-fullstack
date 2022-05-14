@@ -18,8 +18,8 @@ class Photo(models.Model):
     owner = models.ForeignKey(settings.AUTH_USER_MODEL,
                               on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
-    description = models.CharField(max_length=160, blank=True, null=True)
-    source = models.ImageField(upload_to=get_owner_upload_path)
+    description = models.CharField(max_length=160, blank=True)
+    source = models.ImageField(upload_to=get_owner_upload_path, blank=True)
 
     class Meta:
         ordering = ["id"]
