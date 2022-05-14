@@ -4,6 +4,7 @@ import styles from "./PhotoGallery.module.css";
 
 const PhotoGallery = ({
   images,
+  offset,
   handleClickPrev,
   handleClickNext,
   controlsLegend,
@@ -12,8 +13,14 @@ const PhotoGallery = ({
     <section className={styles.gallery}>
       <div className={styles.grid}>
         {images &&
-          images.map(({ id, source, title }) => (
-            <PhotoPreview key={id} id={id} source={source} title={title} />
+          images.map(({ id, source, title }, idx) => (
+            <PhotoPreview
+              key={id}
+              id={id}
+              idx={idx + offset}
+              source={source}
+              title={title}
+            />
           ))}
       </div>
       <div className={styles.controls}>

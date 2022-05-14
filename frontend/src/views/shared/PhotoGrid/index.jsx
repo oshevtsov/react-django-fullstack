@@ -10,21 +10,14 @@ const PhotoGrid = ({ apiURL, requireAuth }) => {
   const { logOut } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
-  const [page, setPage] = useState(1);
+  const [dataURL, setDataURL] = useState(apiURL);
   const [pageData, setPageData] = useState(null);
 
-  const makeFetchURL = useCallback(() => {
-    const url = new URL(apiURL);
-    const searchParams = new URLSearchParams({ page });
-    url.search = searchParams.toString();
-    return url;
-  }, [page, apiURL]);
-
   const fetchData = useCallback(async () => {
-    const url = makeFetchURL();
-    if (requireAuth) return await makeAuthorizedRequest(url, null, "GET", null);
-    return await makeUnauthorizedRequest(url);
-  }, [makeFetchURL, requireAuth]);
+    if (requireAuth)
+      return await makeAuthorizedRequest(dataURL, null, "GET", null);
+    return await makeUnauthorizedRequest(dataURL);
+  }, [dataURL, requireAuth]);
 
   useEffect(() => {
     fetchData()
@@ -42,14 +35,17 @@ const PhotoGrid = ({ apiURL, requireAuth }) => {
       .catch(console.error);
   }, [fetchData, location.pathname, logOut, navigate, requireAuth]);
 
-  const controlsLegend = `${page} of ${pageData?.num_pages ?? page}`;
-  const handleClickPrev = pageData?.previous && (() => setPage(page - 1));
-  const handleClickNext = pageData?.next && (() => setPage(page + 1));
+  const controlsLegend = `${pageData?.page} of ${pageData?.num_pages}`;
+  const handleClickPrev =
+    pageData?.previous && (() => setDataURL(pageData?.previous));
+  const handleClickNext = pageData?.next && (() => setDataURL(pageData?.next));
+  const offset = (pageData?.page - 1) * pageData?.page_size + 1;
   return pageData ? (
     <main className={styles.container}>
       <h1>Profile</h1>
       <PhotoGallery
         images={pageData?.results}
+        offset={offset}
         handleClickPrev={handleClickPrev}
         handleClickNext={handleClickNext}
         controlsLegend={controlsLegend}
