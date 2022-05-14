@@ -1,15 +1,6 @@
-.not-found {
-  flex-grow: 1;
-  padding: 3rem;
+.container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
-
-@media only screen and (max-width: 30em) {
-  .not-found {
-    padding-left: 1rem;
-    padding-right: 1rem;
-  }
 }

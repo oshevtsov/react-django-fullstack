@@ -13,7 +13,7 @@ const PhotoGallery = ({
       <div className={styles.grid}>
         {images &&
           images.map(({ id, source, title }) => (
-            <PhotoPreview key={id} source={source} title={title} />
+            <PhotoPreview key={id} id={id} source={source} title={title} />
           ))}
       </div>
       <div className={styles.controls}>

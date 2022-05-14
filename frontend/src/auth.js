@@ -1,6 +1,7 @@
 import jwt_decode from "jwt-decode";
 import { createContext, useContext, useEffect, useState } from "react";
 import { API_TOKEN_CREATE_URL, API_TOKEN_REFRESH_URL } from "./settings";
+import Loading from "./views/Loading";
 
 /* ----------------- 
    UTILITY FUNCTIONS
@@ -113,7 +114,7 @@ const AuthContext = createContext();
 export const useAuth = () => useContext(AuthContext);
 
 export const AuthProvider = ({ children }) => {
-  const [currentUser, setCurrentUser] = useState(null);
+  const [currentUser, setCurrentUser] = useState(undefined);
 
   const logIn = async (username, password) => {
     const user = await doLogin(username, password);
@@ -134,7 +135,7 @@ export const AuthProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider value={{ currentUser, logIn, logOut }}>
-      {children}
+      {currentUser === undefined ? <Loading /> : children}
     </AuthContext.Provider>
   );
 };

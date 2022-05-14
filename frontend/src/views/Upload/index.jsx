@@ -1,17 +1,33 @@
 import { useNavigate, useLocation } from "react-router-dom";
-import { makeRequest } from "../../api";
+import { makeAuthorizedRequest } from "../../api";
 import {
   API_PHOTO_LIST_VIEW_URL,
   API_PHOTO_DETAIL_SOURCE_URL,
 } from "../../settings";
 import { SubmitButton } from "../../components/Button";
 import { useAuth } from "../../auth";
-import styles from "./Upload.module.css";
+import styles from "../../styles/form-view.module.css";
+import upload from "./Upload.module.css";
+import { useState } from "react";
 
 const Upload = () => {
+  const [uploadFail, setUploadFail] = useState(false);
   const { logOut } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
+
+  const checkResponse = (response) => {
+    if (!response.ok) {
+      if (response.status === 401) {
+        logOut();
+        return navigate("/login", {
+          replace: true,
+          state: { from: location.pathname },
+        });
+      }
+      setUploadFail(true);
+    }
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -20,68 +36,50 @@ const Upload = () => {
     const formEntries = Object.fromEntries(formData);
     const { title, description } = formEntries;
 
-    const jsonResult = await makeRequest(
+    const jsonResult = await makeAuthorizedRequest(
       API_PHOTO_LIST_VIEW_URL,
       JSON.stringify({ title, description })
     );
-
-    if (!jsonResult.ok) {
-      if (jsonResult.status === 401) {
-        logOut();
-        return navigate("/login", {
-          replace: true,
-          state: { from: location.pathname, formEntries: formEntries },
-        });
-      }
-      // TODO: Add flash message about the problem
-      console.error(`Something went wrong, status: ${jsonResult.status}`);
-    }
+    checkResponse(jsonResult);
 
     const { id } = jsonResult.data;
-    const sourceResult = await makeRequest(
+    const sourceResult = await makeAuthorizedRequest(
       API_PHOTO_DETAIL_SOURCE_URL(id),
       formData,
       "PUT",
       null
     );
+    checkResponse(sourceResult);
 
-    if (!sourceResult.ok) {
-      if (sourceResult.status === 401) {
-        logOut();
-        return navigate("/login", {
-          replace: true,
-          state: { from: location.pathname, formEntries: formEntries },
-        });
-      }
-      // TODO: Add flash message about the problem
-      console.error(`Something went wrong, status: ${sourceResult.status}`);
-    }
-
-    navigate("/photos", { replace: true });
+    navigate(`/profile/${id}`, { replace: true });
   };
 
   return (
-    <main className={styles.upload}>
+    <main className={styles.container}>
       <h1>Upload</h1>
+      {uploadFail ? (
+        <p className="error">Upload failed! Please try again.</p>
+      ) : null}
       <form className={styles.form} method="POST" onSubmit={handleSubmit}>
         <label>
           Title
           <input
-            className={styles.title}
+            className={upload.title}
             type="text"
             name="title"
             placeholder="Photo title"
+            maxLength="100"
             required
           />
         </label>
         <label>
           File
-          <input className={styles.file} type="file" name="source" required />
+          <input className={upload.file} type="file" name="source" required />
         </label>
         <label>
           Description
           <textarea
-            className={styles.description}
+            className={upload.description}
             name="description"
             rows="4"
             placeholder="Write your description (max 160 characters)"

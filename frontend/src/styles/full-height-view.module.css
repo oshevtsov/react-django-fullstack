@@ -1,10 +1,10 @@
-.photos {
+.container {
   flex-grow: 1;
   padding: 3rem;
 }
 
 @media only screen and (max-width: 30em) {
-  .photos {
+  .container {
     padding-left: 1rem;
     padding-right: 1rem;
   }

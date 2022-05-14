@@ -46,3 +46,10 @@ button {
 button:hover {
   cursor: pointer;
 }
+
+.error {
+  background-color: tomato;
+  color: var(--color-white);
+  padding: 1rem;
+  border-radius: 3px;
+}

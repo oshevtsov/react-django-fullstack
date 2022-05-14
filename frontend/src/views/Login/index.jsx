@@ -1,13 +1,15 @@
 import { SubmitButton } from "../../components/Button";
 import { useAuth } from "../../auth";
 import { useNavigate, Navigate, useLocation } from "react-router-dom";
-import styles from "./Login.module.css";
+import styles from "../../styles/form-view.module.css";
+import login from "./Login.module.css";
+import { useState } from "react";
 
 const Login = () => {
+  const [loginFail, setLoginFail] = useState(false);
   const { currentUser, logIn } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
-  const loginFrom = location.state?.from;
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -16,31 +18,31 @@ const Login = () => {
     const { username, password } = Object.fromEntries(formData);
 
     const user = await logIn(username, password);
-    if (!user) {
-      const routerState = { message: "Failed to log in, please try again" };
-      if (loginFrom) routerState.from = loginFrom;
-      navigate(location.pathname, {
-        replace: true,
-        state: routerState,
-      });
-    } else {
-      navigate(loginFrom ?? "/", { replace: true });
+    if (user) {
+      const loginFrom = location.state?.from;
+      return navigate(loginFrom ?? "/", { replace: true });
     }
+    setLoginFail(true);
   };
 
   return currentUser ? (
     <Navigate to="/" replace />
   ) : (
-    <main className={styles.login}>
+    <main className={styles.container}>
       <h1>Login</h1>
+      {loginFail ? (
+        <p className="error">
+          Login failed! Please make sure you have entered correct credentials.
+        </p>
+      ) : null}
       <form className={styles.form} method="POST" onSubmit={handleSubmit}>
         <label>
           Username
-          <input type="text" name="username" />
+          <input className={login.input} type="text" name="username" />
         </label>
         <label>
           Password
-          <input type="password" name="password" />
+          <input className={login.input} type="password" name="password" />
         </label>
         <SubmitButton>Submit</SubmitButton>
       </form>

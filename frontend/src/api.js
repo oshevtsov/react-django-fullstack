@@ -27,7 +27,7 @@ const doMakeRequest = async (url, body, method, contentType) => {
   return { ok: response.ok, status: response.status, data: data };
 };
 
-export const makeRequest = async (
+export const makeAuthorizedRequest = async (
   url,
   body,
   method = "POST",
@@ -56,5 +56,16 @@ export const makeRequest = async (
     }
   }
 
-  return { ok: false, status, data: null };
+  return { ok: false, status: status, data: null };
+};
+
+export const makeUnauthorizedRequest = async (url) => {
+  const response = await fetch(url);
+
+  if (response.ok) {
+    const data = await response.json();
+    return { ok: response.ok, status: response.status, data: data };
+  }
+
+  return { ok: response.ok, status: response.status, data: null };
 };

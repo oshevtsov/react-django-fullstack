@@ -8,6 +8,7 @@ import { AuthProvider } from "./auth";
 import Layout, { Protected } from "./views/Layout";
 import Home from "./views/Home";
 import Photos from "./views/Photos";
+import PhotoDetail from "./views/PhotoDetail";
 import Profile from "./views/Profile";
 import Upload from "./views/Upload";
 import Login from "./views/Login";
@@ -22,9 +23,15 @@ root.render(
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
-            <Route path="photos" element={<Photos />} />
+            <Route path="photos">
+              <Route index element={<Photos />} />
+              <Route path=":id" element={<PhotoDetail />} />
+            </Route>
             <Route element={<Protected />}>
-              <Route path="profile" element={<Profile />} />
+              <Route path="profile">
+                <Route index element={<Profile />} />
+                <Route path=":id" element={<PhotoDetail />} />
+              </Route>
               <Route path="upload" element={<Upload />} />
             </Route>
             <Route path="login" element={<Login />} />

@@ -1,0 +1,32 @@
+.photo-detail {
+  flex-grow: 1;
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.username {
+  color: var(--color-secondary);
+}
+
+.image {
+  object-fit: scale-down;
+  max-width: 100%;
+}
+
+.description {
+  font-size: 1.25rem;
+}
+
+@media only screen and (max-width: 30em) {
+  .photo-detail {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .description {
+    font-size: 1rem;
+  }
+}
