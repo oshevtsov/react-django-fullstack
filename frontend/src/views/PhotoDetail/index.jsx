@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import { useLocation, useNavigationType } from "react-router-dom";
+import { useParams, useNavigationType } from "react-router-dom";
 import { API_PHOTO_DETAIL_VIEW_URL } from "../../settings";
 import { makeUnauthorizedRequest } from "../../api";
 import styles from "./PhotoDetail.module.css";
@@ -7,8 +7,7 @@ import Loading from "../Loading";
 
 const PhotoDetail = () => {
   const [details, setDetails] = useState(null);
-  const location = useLocation();
-  const { id } = location.state;
+  const { id } = useParams();
   const navigationType = useNavigationType();
 
   const fetchData = useCallback(async () => {
