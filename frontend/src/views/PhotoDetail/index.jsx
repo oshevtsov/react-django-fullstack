@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { useLocation, useNavigationType } from "react-router-dom";
 import { API_PHOTO_DETAIL_VIEW_URL } from "../../settings";
+import { makeUnauthorizedRequest } from "../../api";
 import styles from "./PhotoDetail.module.css";
 import Loading from "../Loading";
 
@@ -11,15 +12,15 @@ const PhotoDetail = () => {
   const navigationType = useNavigationType();
 
   const fetchData = useCallback(async () => {
-    const response = await fetch(API_PHOTO_DETAIL_VIEW_URL(id));
-    if (response.ok) {
-      const data = await response.json();
-      setDetails(data);
-    }
+    return await makeUnauthorizedRequest(API_PHOTO_DETAIL_VIEW_URL(id));
   }, [id]);
 
   useEffect(() => {
-    fetchData().catch(console.error);
+    fetchData()
+      .then((response) => {
+        if (response.ok) return setDetails(response.data);
+      })
+      .catch(console.error);
   }, [fetchData]);
 
   const header = (
