@@ -36,6 +36,9 @@ class PhotoViewSet(PerActionSerializerMixin, viewsets.ModelViewSet):
         if serializer.is_valid():
             serializer.save()
             return response.Response(serializer.data)
+
+        # Delete half-baked object so that the user retries
+        obj.delete()
         return response.Response(serializer.errors,
                                  status.HTTP_400_BAD_REQUEST)
 
