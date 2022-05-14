@@ -4,6 +4,7 @@
   aspect-ratio: 1 / 1;
   object-position: top left;
   background-color: var(--color-grey-light);
+  border-radius: var(--border-radius);
 }
 
 .title {

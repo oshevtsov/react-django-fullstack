@@ -33,6 +33,8 @@ code {
   --color-grey-dark: #282c34;
   --color-white: #fff;
   --color-black: #000;
+
+  --border-radius: 3px;
 }
 
 a {
@@ -51,5 +53,5 @@ button:hover {
   background-color: tomato;
   color: var(--color-white);
   padding: 1rem;
-  border-radius: 3px;
+  border-radius: var(--border-radius);
 }

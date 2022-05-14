@@ -5,7 +5,7 @@
   padding: calc(0.5 * var(--size)) calc(var(--size));
   font-size: var(--size);
   font-weight: bold;
-  border-radius: 3px;
+  border-radius: var(--border-radius);
 }
 
 .link-button,
