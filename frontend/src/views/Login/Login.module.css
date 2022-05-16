@@ -1,9 +1,0 @@
-.input {
-  display: block;
-  font-size: inherit;
-  padding: 0.75rem 1.5rem;
-  width: 100%;
-  border: 2px solid var(--color-grey-light);
-  border-radius: var(--border-radius);
-  margin-top: 0.75rem;
-}

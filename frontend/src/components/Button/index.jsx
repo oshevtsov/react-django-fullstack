@@ -2,13 +2,13 @@ import { Link } from "react-router-dom";
 import styles from "./Button.module.css";
 
 export const LinkButton = ({ path, children }) => (
-  <Link to={path} className={styles["link-button"]}>
+  <Link to={path} className={styles["linkButton"]}>
     {children}
   </Link>
 );
 
 export const SubmitButton = ({ children }) => (
-  <button type="submit" className={styles["submit-button"]}>
+  <button type="submit" className={styles["submitButton"]}>
     {children}
   </button>
 );
@@ -17,7 +17,7 @@ const ArrowButton = ({ handleClick, children }) => (
   <button
     type="button"
     onClick={handleClick}
-    className={styles["arrow-button"]}
+    className={styles["arrowButton"]}
     disabled={!handleClick}
   >
     {children}

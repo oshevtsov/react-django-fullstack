@@ -1,6 +1,6 @@
-.link-button,
-.submit-button,
-.arrow-button {
+.linkButton,
+.submitButton,
+.arrowButton {
   --size: var(--base-size, 1rem);
   padding: calc(0.5 * var(--size)) calc(var(--size));
   font-size: var(--size);
@@ -8,27 +8,28 @@
   border-radius: var(--border-radius);
 }
 
-.link-button,
-.submit-button {
+.linkButton,
+.submitButton {
   background-color: var(--color-secondary);
   color: var(--color-white);
 }
 
-.link-button {
+.linkButton {
   --base-size: 1.25rem;
+  display: inline-block;
 }
 
-.arrow-button {
+.arrowButton {
   background-color: var(--color-black);
   color: var(--color-white);
 }
 
-.arrow-button:hover,
-.arrow-button:focus {
+.arrowButton:hover,
+.arrowButton:focus {
   color: var(--color-secondary);
 }
 
-button.arrow-button:disabled {
+button.arrowButton:disabled {
   background-color: var(--color-grey-dark);
   color: var(--color-grey-light);
   cursor: not-allowed;

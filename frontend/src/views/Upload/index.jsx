@@ -3,11 +3,12 @@ import { makeAuthorizedRequest } from "../../api";
 import {
   API_PHOTO_LIST_VIEW_URL,
   API_PHOTO_DETAIL_SOURCE_URL,
+  TEXTAREA_MAX_LENGTH,
+  TEXT_INPUT_MAX_LENGTH,
 } from "../../settings";
 import { SubmitButton } from "../../components/Button";
 import { useAuth } from "../../auth";
 import styles from "../../styles/form-view.module.css";
-import upload from "./Upload.module.css";
 import { useState } from "react";
 
 const Upload = () => {
@@ -64,29 +65,27 @@ const Upload = () => {
         <label>
           Title
           <input
-            className={upload.title}
             type="text"
             name="title"
-            placeholder="Photo title"
-            maxLength="100"
+            placeholder={`Photo title (max ${TEXT_INPUT_MAX_LENGTH} characters)`}
+            maxLength={TEXT_INPUT_MAX_LENGTH}
             required
           />
         </label>
         <label>
           File
-          <input className={upload.file} type="file" name="source" required />
+          <input type="file" name="source" required />
         </label>
         <label>
           Description
           <textarea
-            className={upload.description}
             name="description"
             rows="4"
-            placeholder="Write your description (max 160 characters)"
-            maxLength="160"
+            placeholder={`Write your description (max ${TEXTAREA_MAX_LENGTH} characters)`}
+            maxLength={TEXTAREA_MAX_LENGTH}
           />
         </label>
-        <SubmitButton type="submit">Submit</SubmitButton>
+        <SubmitButton>Submit</SubmitButton>
       </form>
     </main>
   );

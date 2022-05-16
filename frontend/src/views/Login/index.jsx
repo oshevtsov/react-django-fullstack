@@ -1,8 +1,12 @@
 import { SubmitButton } from "../../components/Button";
 import { useAuth } from "../../auth";
-import { useNavigate, Navigate, useLocation } from "react-router-dom";
+import {
+  useNavigate,
+  useNavigationType,
+  Navigate,
+  useLocation,
+} from "react-router-dom";
 import styles from "../../styles/form-view.module.css";
-import login from "./Login.module.css";
 import { useState } from "react";
 
 const Login = () => {
@@ -10,6 +14,7 @@ const Login = () => {
   const { currentUser, logIn } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
+  const isServerRoute = useNavigationType() === "POP";
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -25,7 +30,7 @@ const Login = () => {
     setLoginFail(true);
   };
 
-  return currentUser ? (
+  return currentUser && isServerRoute ? (
     <Navigate to="/" replace />
   ) : (
     <main className={styles.container}>
@@ -38,11 +43,11 @@ const Login = () => {
       <form className={styles.form} method="POST" onSubmit={handleSubmit}>
         <label>
           Username
-          <input className={login.input} type="text" name="username" />
+          <input type="text" name="username" />
         </label>
         <label>
           Password
-          <input className={login.input} type="password" name="password" />
+          <input type="password" name="password" />
         </label>
         <SubmitButton>Submit</SubmitButton>
       </form>

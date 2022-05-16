@@ -1,6 +1,4 @@
-.photo-detail {
-  flex-grow: 1;
-  padding: 3rem;
+.container {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -11,6 +9,13 @@
   color: var(--color-secondary);
 }
 
+.editHeader {
+  width: 100%;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
 .image {
   object-fit: scale-down;
   max-width: 100%;
@@ -18,15 +23,18 @@
 }
 
 .description {
+  margin-top: 1rem;
   font-size: 1.25rem;
 }
 
-@media only screen and (max-width: 30em) {
-  .photo-detail {
-    padding-left: 1rem;
-    padding-right: 1rem;
-  }
+.controls {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
 
+@media only screen and (max-width: 30em) {
   .description {
     font-size: 1rem;
   }
