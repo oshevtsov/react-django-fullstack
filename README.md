@@ -1,7 +1,6 @@
 # Simple React-Django application
 
-Simple client-server application for sharing photos. This is an exercise project
-which is a part of **Helicon Hell**.
+Simple client-server application for sharing photos. This is an exercise project.
 
 ## Frontend
 
