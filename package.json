@@ -1,5 +1,5 @@
 {
-  "name": "nothotdog",
+  "name": "react-django-fullstack",
   "version": "1.0.0",
   "description": "Simple client-server application for sharing photos.",
   "scripts": {
